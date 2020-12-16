@@ -1,0 +1,37 @@
+{
+  "name": "term-api-cloud",
+  "version": "1.0.0",
+  "description": "rest api to connect to mysql data",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andytrandaoanh/term-api-cloud.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mysql",
+    "heroku",
+    "github"
+  ],
+  "author": "Andy Tran Dao Anh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andytrandaoanh/term-api-cloud/issues"
+  },
+  "homepage": "https://github.com/andytrandaoanh/term-api-cloud#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
