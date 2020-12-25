@@ -5,6 +5,7 @@ const cors = require("cors");
 const exampleRoutes = require('./routes/example-routes');
 const languageRoutes = require('./routes/language-routes');
 const termRoutes = require('./routes/term-routes');
+const userRoutes = require('./routes/user-routes');
 
 const PORT = process.env.PORT | 5000;
 const app = express();
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 app.use('/api', exampleRoutes);
 app.use('/api', languageRoutes);
 app.use('/api', termRoutes);
+app.use('/api', userRoutes);
 
 // set port, listen for requests
 app.listen(PORT, () => {
