@@ -5,12 +5,13 @@ const authService = require("../services/user-auth-service");
 //Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-  }
+  //console.log('request verified user', req.user);
 
+ 
+  if (!req.body) {
+    res.sendStatus(400);
+    console.log('Request body is empty');
+  }
 
 
 
@@ -29,10 +30,11 @@ exports.create = (req, res) => {
       fullName: req.body.fullName,
       password: hash,
       admin: req.body.admin,
-      editor : req.body.editor
+      editor : req.body.editor,
+      status: req.body.status || 0
+      
       
     });
-  // Save User in the database
     User.create(user, (err, data) => {
 
       if (err)
@@ -40,9 +42,12 @@ exports.create = (req, res) => {
           message:
             err.message || "Some error occurred while creating the User."
         });
-      else res.send(data);
+      res.send(data);
     });
-
+    
+    //res.send(user);
+    //console.log('created new user:', user )
+    //res.sendStatus(200);
   })
 
 
@@ -67,15 +72,15 @@ exports.findAll = (req, res) => {
 
 // Find a single User with a userId
 exports.findOne = (req, res) => {  
-  User.findById(req.params.userId, (err, data) => {
+  User.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found User with id ${req.params.userId}.`
+          message: `Not found User with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving User with id " + req.params.userId
+          message: "Error retrieving User with id " + req.params.id
         });
       }
     } else res.send(data);
@@ -85,15 +90,17 @@ exports.findOne = (req, res) => {
 // Update a User identified by the userId in the request
 exports.update = (req, res) => {
   // Validate Request
+  //console.log('user data', req.body);
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
   }
 
+
   User.updateById(
     req.params.id,
-    new User(req.body),
+    req.body,
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -114,7 +121,7 @@ exports.update = (req, res) => {
 
 // Delete a User with the specified userId in the request
 exports.delete = (req, res) => {
-  User.remove(req.params.userId, (err, data) => {
+  User.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -191,7 +198,7 @@ exports.authenticate = (req, res) => {
           const {id, name, admin, editor } = data;
           const payload = {id, name, admin, editor};
           const jwtToken = authService.generateToken(payload);
-          res.status(200).json(jwtToken);
+          res.status(200).json({...payload, token: jwtToken, login: true});
 ;  
         }
 

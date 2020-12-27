@@ -221,7 +221,7 @@ Term.getAllCombinedTerms = (langId, result) => {
       return;
     }
 
-    console.log("terms: ", res);
+    //console.log("terms: ", res);
     result(null, res);
   });
 };

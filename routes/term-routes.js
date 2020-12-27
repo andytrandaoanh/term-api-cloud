@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const terms = require("../controllers/term-controller.js");
 const authService = require("../services/uuid-auth-service.js");
+const {verifyEditor } = require("../services/login-auth-service.js");
 
-
-router.post("/terms", authService, terms.create);
+router.post("/terms", verifyEditor, terms.create);
 
 //get combination of orignal and translated terms
 router.get("/terms/combined/:langId", authService, terms.listCombinedTerms);
@@ -22,13 +22,13 @@ router.get("/terms", authService, terms.findAll);
 router.get("/terms/:termId", authService, terms.findOne);
 
 //Update a term with termId
-router.put("/terms/:termId", authService, terms.update);
+router.put("/terms/:termId", verifyEditor, terms.update);
 
 //Delete a term with langId
-router.delete("/terms/:termId", authService, terms.delete);
+router.delete("/terms/:termId", verifyEditor, terms.delete);
 
 //Create a new term
-router.delete("/terms", authService, terms.deleteAll);
+router.delete("/terms", verifyEditor, terms.deleteAll);
 
 
 module.exports = router;

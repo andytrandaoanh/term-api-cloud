@@ -24,7 +24,7 @@ User.create = (newUser, result) => {
 };
 
 User.findById = (id, result) => {
-  sql.query(`SELECT * FROM users WHERE eg_id = ${id}`, (err, res) => {
+  sql.query(`SELECT * FROM users WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -56,7 +56,7 @@ User.getAll = result => {
 };
 
 User.updateById = (id, user, result) => {
-  const  [name, fullName, admin, editor, status ] = user;
+  const  {name, fullName, admin, editor, status } = user;
   sql.query(
     "UPDATE users SET name = ?, full_name = ?, admin=?, editor=?, status = ? WHERE id= ?",
     [name, fullName, admin, editor, status, id],

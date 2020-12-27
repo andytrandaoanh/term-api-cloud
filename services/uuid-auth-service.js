@@ -5,7 +5,8 @@ function verifyAccess(req, res, next) {
 
   const userAPIKey = req.headers['x-api-key'];
 
-
+  //console.log('atemmping to add new user', req.body);
+  
   if (!userAPIKey) 
     return res.status(403).send({ auth: false, message: 'No API key provided.' });
   
