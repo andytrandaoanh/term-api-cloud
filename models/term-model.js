@@ -53,7 +53,7 @@ Term.getAll = result => {
       return;
     }
 
-    console.log("terms: ", res);
+    //console.log("terms: ", res);
     result(null, res);
   });
 };
@@ -75,7 +75,7 @@ Term.updateById = (id, term, result) => {
         return;
       }
 
-      console.log("updated term: ", { term_id: term.term_id, ...term });
+      //console.log("updated term: ", { term_id: term.term_id, ...term });
       result(null, { term_id: term.term_id, ...term });
     }
   );
@@ -141,7 +141,7 @@ Term.searchByQueryParams = (searchParams, result) => {
     
   if (strSQL) {
 
-    console.log('strSQL: ', strSQL)
+    //console.log('strSQL: ', strSQL)
     sql.query(strSQL, (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -150,7 +150,7 @@ Term.searchByQueryParams = (searchParams, result) => {
       }
 
       if (res.length) {
-        console.log("found terms: ", res);
+        //console.log("found terms: ", res);
         result(null, res);
         return;
       }
@@ -176,7 +176,7 @@ Term.listOrderByQueryParams = (searchParams, result) => {
     
   if (strSQL) {
 
-    console.log('strSQL: ', strSQL)
+    //console.log('strSQL: ', strSQL)
     sql.query(strSQL, (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -185,7 +185,7 @@ Term.listOrderByQueryParams = (searchParams, result) => {
       }
 
       if (res.length) {
-        console.log("found terms: ", res);
+        //console.log("found terms: ", res);
         result(null, res);
         return;
       }

@@ -15,7 +15,7 @@ Language.create = (newLanguage, result) => {
       return;
     }
 
-    console.log("created language: ", { lang_id: res.insertId, ...newLanguage });
+    //console.log("created language: ", { lang_id: res.insertId, ...newLanguage });
     result(null, { lang_id: res.insertId, ...newLanguage });
   });
 };
@@ -49,7 +49,7 @@ Language.getAll = result => {
       return;
     }
 
-    console.log("languages: ", res);
+    //console.log("languages: ", res);
     result(null, res);
   });
 };
@@ -71,7 +71,7 @@ Language.updateById = (id, language, result) => {
         return;
       }
 
-      console.log("updated language: ", { lang_id: language.lang_id, ...language });
+      //console.log("updated language: ", { lang_id: language.lang_id, ...language });
       result(null, { lang_id: language.lang_id, ...language });
     }
   );

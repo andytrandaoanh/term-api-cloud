@@ -4,7 +4,7 @@ const users = require("../controllers/user-controller.js");
 const authService = require("../services/uuid-auth-service.js");
 const {verifyEditor, verifyAdmin } = require("../services/login-auth-service.js");
 
-router.post("/users/create", authService, users.create);
+//router.post("/users/create", authService, users.create);
 
 router.post("/users", verifyAdmin, users.create);
 

@@ -32,7 +32,7 @@ User.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found user: ", res[0]);
+      //console.log("found user: ", res[0]);
       result(null, res[0]);
       return;
     }
@@ -129,7 +129,7 @@ User.searchByQueryParams = (searchParams, result) => {
       }
 
       if (res.length) {
-        console.log("found users: ", res);
+        //console.log("found users: ", res);
         result(null, res[0]);
         return;
       }
